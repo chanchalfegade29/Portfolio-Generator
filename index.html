@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portify Studio | Portfolio Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="light-rays" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+  <div class="particle-field" id="particleField" aria-hidden="true"></div>
+
+  <div class="page-shell">
+    <header class="navbar" id="navbar">
+      <div class="nav-brand">
+        <span class="brand-mark"></span>
+        <span class="brand-text">Portify Studio</span>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#templates">Templates</a>
+        <a href="#builder">Build Portfolio</a>
+        <a href="#history">History</a>
+        <a href="#builder" class="btn btn-primary nav-cta">Get Started</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section reveal" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Premium portfolio builder for modern creators
+          </div>
+          <h1>Design Your Portfolio Like Magic ✨</h1>
+          <p class="subtitle">No coding. Just creativity.</p>
+          <p class="hero-description">
+            Create a polished, interactive portfolio with cinematic motion, elegant templates, and instant publishing-style previews.
+          </p>
+
+          <div class="typing-wrap" aria-live="polite">
+            <span class="typing-label">Made for</span>
+            <span class="typing-text" id="typingText">Developers</span>
+            <span class="typing-cursor">|</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#builder" class="btn btn-primary ripple">Start Building</a>
+            <a href="#templates" class="btn btn-secondary ripple">View Templates</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card glass">
+              <strong>3-step flow</strong>
+              <span>Fast, focused creation</span>
+            </div>
+            <div class="stat-card glass">
+              <strong>Live preview</strong>
+              <span>Instant portfolio generation</span>
+            </div>
+            <div class="stat-card glass">
+              <strong>Saved history</strong>
+              <span>Everything stays in your browser</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="preview-stage glass">
+            <div class="preview-topbar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="preview-layout">
+              <div class="floating-card floating-card-large glass animate-float">
+                <div class="chip"></div>
+                <h3>Portfolio Preview</h3>
+                <p>Elegant, responsive, and fully editable.</p>
+              </div>
+              <div class="floating-card floating-card-mini glass animate-drift-1">
+                <span>UI</span>
+                <strong>Motion</strong>
+              </div>
+              <div class="floating-card floating-card-mini floating-card-mini-2 glass animate-drift-2">
+                <span>Brand</span>
+                <strong>Depth</strong>
+              </div>
+              <div class="avatar-stack glass">
+                <div class="avatar-ring"></div>
+                <div class="avatar-face"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="templates">
+        <div class="section-heading">
+          <span class="section-kicker">Templates</span>
+          <h2>Choose a portfolio direction</h2>
+          <p>Start from a premium layout that matches your style, then customize every detail in the builder.</p>
+        </div>
+        <div class="template-grid" id="templateGrid"></div>
+      </section>
+
+      <section class="section reveal" id="builder">
+        <div class="section-heading builder-heading">
+          <span class="section-kicker">Builder</span>
+          <h2>Design your portfolio in a guided flow</h2>
+          <p>Use the multi-step builder to craft your personal information, skills, projects, and contact details.</p>
+        </div>
+
+        <div class="builder-shell glass">
+          <div class="progress-area">
+            <div class="progress-header">
+              <span id="stepLabel">Step 1 of 4</span>
+              <span id="stepName">Personal Info</span>
+            </div>
+            <div class="progress-bar">
+              <span id="progressFill"></span>
+            </div>
+          </div>
+
+          <form id="portfolioForm" novalidate>
+            <div class="form-step active" data-step="0">
+              <div class="field-grid two-col">
+                <label class="field floating">
+                  <input type="text" id="name" name="name" placeholder=" " required />
+                  <span>Name</span>
+                </label>
+                <label class="field floating">
+                  <input type="text" id="title" name="title" placeholder=" " required />
+                  <span>Title</span>
+                </label>
+              </div>
+              <div class="field-grid">
+                <label class="field floating upload-field">
+                  <input type="file" id="profileImage" accept="image/*" />
+                  <span>Profile Image</span>
+                </label>
+                <div class="image-preview" id="imagePreview">
+                  <div class="preview-placeholder">Upload an image or use the generated avatar</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-step" data-step="1">
+              <div class="field-grid">
+                <label class="field floating">
+                  <textarea id="bio" name="bio" placeholder=" " rows="5" required></textarea>
+                  <span>About Me</span>
+                </label>
+              </div>
+              <div class="skills-panel">
+                <div class="skills-input-row">
+                  <label class="field floating skill-input-field">
+                    <input type="text" id="skillInput" placeholder=" " />
+                    <span>Add a skill and press Enter</span>
+                  </label>
+                  <button type="button" class="btn btn-secondary ripple" id="addSkillBtn">Add Skill</button>
+                </div>
+                <div class="tag-list" id="skillTags"></div>
+              </div>
+            </div>
+
+            <div class="form-step" data-step="2">
+              <div class="projects-toolbar">
+                <div>
+                  <h3>Projects</h3>
+                  <p>Highlight your best work with links and concise descriptions.</p>
+                </div>
+                <button type="button" class="btn btn-secondary ripple" id="addProjectBtn">Add Project</button>
+              </div>
+              <div id="projectsContainer" class="project-list"></div>
+            </div>
+
+            <div class="form-step" data-step="3">
+              <div class="field-grid two-col">
+                <label class="field floating">
+                  <input type="email" id="email" name="email" placeholder=" " required />
+                  <span>Email</span>
+                </label>
+                <label class="field floating">
+                  <input type="url" id="linkedin" name="linkedin" placeholder=" " />
+                  <span>LinkedIn</span>
+                </label>
+              </div>
+              <div class="field-grid">
+                <label class="field floating">
+                  <input type="url" id="github" name="github" placeholder=" " />
+                  <span>GitHub</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <button type="button" class="btn btn-secondary ripple" id="prevStep">Previous</button>
+              <div class="footer-actions">
+                <button type="button" class="btn btn-ghost ripple" id="saveDraftBtn">Save Draft</button>
+                <button type="button" class="btn btn-primary ripple" id="nextStep">Next</button>
+                <button type="submit" class="btn btn-primary ripple hidden" id="generateBtn">Generate Portfolio</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section reveal hidden" id="outputSection">
+        <div class="section-heading">
+          <span class="section-kicker">Generated Portfolio</span>
+          <h2>Your portfolio is ready</h2>
+          <p>Review the generated layout, then save, print, or edit again at any time.</p>
+        </div>
+
+        <div class="output-actions">
+          <button class="btn btn-secondary ripple" id="printBtn">Download PDF</button>
+          <button class="btn btn-ghost ripple" id="editAgainBtn">Edit Again</button>
+        </div>
+
+        <article class="portfolio-preview glass" id="portfolioPreview"></article>
+      </section>
+
+      <section class="section reveal" id="history">
+        <div class="section-heading">
+          <span class="section-kicker">History</span>
+          <h2>Saved portfolios</h2>
+          <p>Every generated portfolio is stored locally so you can revisit and restore it instantly.</p>
+        </div>
+        <div class="history-grid" id="historyGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer glass reveal">
+      <div class="footer-grid">
+        <div>
+          <h3>About Portify</h3>
+          <p>A high-polish portfolio builder designed to make personal branding feel fast, clear, and premium.</p>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <a href="#templates">Templates</a>
+          <a href="#builder">Builder</a>
+          <a href="#history">History</a>
+        </div>
+        <div>
+          <h3>Social</h3>
+          <div class="socials">
+            <a href="#" aria-label="Twitter" class="social-icon">X</a>
+            <a href="#" aria-label="LinkedIn" class="social-icon">in</a>
+            <a href="#" aria-label="GitHub" class="social-icon">GH</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Portify Studio. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <div class="loading-overlay hidden" id="loadingOverlay" aria-hidden="true">
+    <div class="spinner"></div>
+    <p>Generating your portfolio...</p>
+  </div>
+
+  <template id="projectTemplate">
+    <div class="project-card glass">
+      <button type="button" class="remove-project" aria-label="Remove project">×</button>
+      <label class="field floating">
+        <input type="text" class="project-title" placeholder=" " required />
+        <span>Project Title</span>
+      </label>
+      <label class="field floating">
+        <textarea class="project-description" placeholder=" " rows="4" required></textarea>
+        <span>Description</span>
+      </label>
+      <label class="field floating">
+        <input type="url" class="project-link" placeholder=" " required />
+        <span>Project Link</span>
+      </label>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
